@@ -5,7 +5,7 @@ class Scene1 extends Phaser.Scene {
 
 	preload(){
 	this.load.image('perso','assets/perso.png');
-	this.load.image('background','assets/background.jpg');
+	this.load.image('background','assets/background.png');
 	this.load.image('platforms','assets/platforms.png');
 	
 	}
@@ -15,6 +15,7 @@ class Scene1 extends Phaser.Scene {
 	this.add.image(400,300,'background');
 	
 	this.platforms=this.physics.add.staticImage(400,570, 'platforms');
+	this.platforms.setVisible(false);
 	this.cursors = this.input.keyboard.createCursorKeys();
 
 	 // Perso 
@@ -78,6 +79,7 @@ class Scene1 extends Phaser.Scene {
 
 		if (this.cursors.left.isDown){
            this.player.setVelocityX(-800);
+           this.player.setFlipX(true);
 
            //this.player.anims.play('left', true);
 
@@ -85,35 +87,16 @@ class Scene1 extends Phaser.Scene {
         }
         else if (this.cursors.right.isDown){
             this.player.setVelocityX(800);
+            this.player.setFlipX(true);
 
             //this.player.anims.play('right', true);
-
             //this.player.direction = 'right';
         }
         else{
             this.player.setVelocityX(0);
+            this.player.setFlipX(true);
 
             //this.player.anims.play('turn');
-        }
-
-        if (this.cursors.up.isDown){
-               this.player.setVelocityY(-800);
-        }
-
-        else if (this.cursors.down.isDown){
-                this.player.setVelocityY(800);
-                this.player.setFlipX(true);
-        }
-        else{
-                this.player.setVelocityY(0);
-        }
-
-        if (this.cursors.down.isDown){
-           this.player.setVelocityY(800);
-
-           //this.player.anims.play('down', true);
-
-           //this.player.direction = 'down';
         }
 
 	}
