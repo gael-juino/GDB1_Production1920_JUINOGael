@@ -15,7 +15,7 @@ class Scene3 extends Phaser.Scene {
 
 	//cursors//
 	this.cursors = this.input.keyboard.createCursorKeys();
-	
+
 	//caisse//
 	this.caisse = this.physics.add.image(200,420 ,'caisse');
 	this.paniette.direction = 'right';
@@ -60,9 +60,6 @@ class Scene3 extends Phaser.Scene {
         }
         else{
         this.paniette.setVelocityX(0);
-        }
-        if(this.timeLeft == 0){
-        this.scene.start('micro_jeu_3');
         }
 
 	}
