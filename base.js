@@ -5,13 +5,13 @@ var config = {
     physics: {
         default: 'arcade',
         arcade: {
-            gravity: {y: 00},
+            gravity: {y: 100},
             debug: true
 
         }
     },
 
-    scene: [Scene1]
+    scene: [Scene3]
 
 };
 
