@@ -13,8 +13,12 @@ class Scene3 extends Phaser.Scene {
 	//fond//
 	this.add.image(360,265, 'fond2');
 
+	//cursors//
+	this.cursors = this.input.keyboard.createCursorKeys();
+
 	//caisse//
-	caisse = this.physics.add.image(600,50,'caisse');
+	this.caisse = this.physics.add.image(200,420 ,'caisse');
+	this.paniette.direction = 'right';
 	caisse.setCollideWorldBounds(true);
 	caisse.body.setGravityY(-300);
 	this.physics.add.collider(caisse, platforms);
@@ -45,7 +49,18 @@ class Scene3 extends Phaser.Scene {
             this.gameTimer.paused = false;
 	}
 	update(){
+		// Deplacement du perso// 
 
+		if (this.cursors.left.isDown){
+        this.paniette.setVelocityX(-800);
+        }
+        else if (this.cursors.right.isDown){
+        this.paniette.setVelocityX(800);
+
+        }
+        else{
+        this.paniette.setVelocityX(0);
+        }
 
 	}
 }

@@ -97,37 +97,20 @@ class Scene2 extends Phaser.Scene {
 		// Deplacement du perso// 
 
 		if (this.cursors.left.isDown){
-           this.paniette.setVelocityX(-800);
+        this.paniette.setVelocityX(-800);
         }
         else if (this.cursors.right.isDown){
-            this.paniette.setVelocityX(800);
+        this.paniette.setVelocityX(800);
 
         }
         else{
-            this.paniette.setVelocityX(0);
+        this.paniette.setVelocityX(0);
         }
         if(this.timeLeft == 0){
         this.scene.start('micro_jeu_3');
         }
 
-        //caisse//
-	if (caisse.y <= 150) {
-		this.tweens.add({
-			targets: caisse,
-			y:600,
-		    ease: 'Linear',
-		    duration: 4000,
-		});
-		//batt.anims.play('fly', true);
-	}
-
-	if (caisse.y >= 300) {
-		this.tweens.add({
-			targets: caisse,
-			y:10,
-			duration: 1000,
-		});
-	}
+    
 
 
 	}
