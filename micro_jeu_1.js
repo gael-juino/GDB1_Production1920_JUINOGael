@@ -90,9 +90,6 @@ class Scene1 extends Phaser.Scene {
                     this.timeLeft --;
                     let stepWidth = this.energyMask.displayWidth / gameOptions.initialTime;
                     this.energyMask.x -= stepWidth;
-                    
-                   
-
                 },
                 callbackScope: this,
                 loop: true
@@ -105,7 +102,7 @@ class Scene1 extends Phaser.Scene {
 	this.cursors = this.input.keyboard.createCursorKeys();
 
 
-	 // Perso 
+	 // Perso//
 
 			this.player = this.physics.add.image(200,420 ,'perso');
 			this.player.direction = 'right';
@@ -119,7 +116,7 @@ class Scene1 extends Phaser.Scene {
 			this.physics.add.overlap(this.player,this.changeS);
 			this.player.setVisible(true);
 
-		// anims perso
+		// anims perso//
 
 			this.anims.create({
 			    key: 'left',
@@ -175,7 +172,7 @@ class Scene1 extends Phaser.Scene {
 
 	update(){
 
-	// Deplacement vaisseau 
+	// Deplacement du perso// 
 
 		if (this.cursors.left.isDown){
            this.player.setVelocityX(-800);
@@ -214,5 +211,6 @@ class Scene1 extends Phaser.Scene {
         if(this.timeLeft == 0){
         this.scene.start('micro_jeu_2');
         }
+        
 	}
 }
