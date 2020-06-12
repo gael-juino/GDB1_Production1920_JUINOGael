@@ -3,21 +3,19 @@ class map extends Phaser.Scene {
         super("map");
 	}
 	init(data){
-    this.argent = data.argent;
+    	this.argent = data.argent;
+    	this.niveau = data.niveau;
+    	this.lvl = data.lvl;
 
   	}
 
 	preload(){
-		this.load.image('map','assets/map.png');
-		this.load.image('niveau1','assets/niveau1.png');
-		this.load.image('niveau2','assets/niveau2.png');
-		this.load.image('retour','assets/retour.png');
+		
 	}
 
 	create(){
-		this.argent++;
+		this.lvl=0;
 		this.add.image(400, 200, 'map');
-
 
 		this.bouton1 = this.add.image(410, 140, 'niveau1').setInteractive();
 		this.bouton1.on('pointerdown',() => {
@@ -29,27 +27,26 @@ class map extends Phaser.Scene {
 	    this.timedEvent = this.time.delayedCall(0, changeLevel2, [], this);
 	    })
 
-	    
+	    this.bouton2 = this.add.image(395, 200, 'niveau2').setInteractive().setVisible(false);
+			this.bouton2.on('pointerdown',() => {
+			this.niveau++;
+		    this.timedEvent = this.time.delayedCall(0, changeLevel, [], this);
+	    })
+
+			if(this.lvl >= 1){
+			this.bouton2.setVisible(true);
+	    }
 
 	    function changeLevel(){
-	    this.scene.start('transition_1', {argent: this.argent});
+	    this.scene.start('transition_3', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
 	    }
 
 	    function changeLevel2(){
-	    this.scene.start('ecran_titre', {argent: this.argent});
+	    this.scene.start('ecran_titre', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
 	    }
 	}
 
 	update(){
-		if(this.argent == 1){
-		    this.bouton2 = this.add.image(395, 200, 'niveau2').setInteractive();
-			this.bouton2.on('pointerdown',() => {
-		    this.timedEvent = this.time.delayedCall(0, changeLevel, [], this);
-		    })
-	    }
-
-	    function changeLevel(){
-	    this.scene.start('transition_1', {argent: this.argent});
-	    }
+		
 	}
 }

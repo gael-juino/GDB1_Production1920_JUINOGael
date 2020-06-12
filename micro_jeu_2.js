@@ -4,21 +4,25 @@ class Scene2 extends Phaser.Scene {
 	}
 	init(data){
     this.argent = data.argent;
+    this.niveau = data.niveau;
+    this.lvl = data.lvl;
 
   	}
 
 	preload(){
-	this.load.image('fond','assets/background2.png');
-	this.load.image('panier','assets/panier.png');
-	this.load.image('bol','assets/bol.png');
-	this.load.image('timebar','assets/timebar.png');
-	this.load.image('platforms','assets/platforms.png');
+	
 
 
 
 	}
 
+	
+
 	create(){
+	//dif//
+	this.diff = (250*this.niveau);
+
+
 	this.add.image(400,300,'fond');
 
 	//sol//
@@ -36,9 +40,6 @@ class Scene2 extends Phaser.Scene {
 	this.paniette.setCollideWorldBounds(true);
 	this.paniette.setVisible(true);
 
-	//score//
-	this.score = 8;
-	this.scoreText = this.add.text(50,110 , 'bol restant: 8', { fontSize: '32px', fill: '#FFF' });
 
 	//timerbar//
 	let gameOptions = { initialTime: 650 }
@@ -67,6 +68,7 @@ class Scene2 extends Phaser.Scene {
 	this.groupBol = this.physics.add.group();
 
 
+
 	//spawn des objets//
 	this.timer = this.time.addEvent({
     delay: 1000,
@@ -78,7 +80,7 @@ class Scene2 extends Phaser.Scene {
 
 	
 	function dropBol(){
-	this.dropBol = this.groupBol.create(Phaser.Math.Between(50,800),-50 ,'bol');
+	this.dropBol = this.groupBol.create(Phaser.Math.Between(50,800),-50 ,'bol').setGravityY(this.diff);
 	}
 
 	this.physics.add.collider(this.paniette, this.groupBol, collectBol, null, this);
@@ -86,13 +88,11 @@ class Scene2 extends Phaser.Scene {
 
 	function collectBol(paniette, bol) {
 	bol.destroy(true);
-	this.score -= 1;
-    this.scoreText.setText('Bol restant: ' + this.score);
     }
 
     function solBol(platforms, bol) {
 	bol.destroy(true);
-	this.scene.start('gameOver', {argent: this.argent});
+	this.scene.start('gameOver', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
     }
     
 
@@ -111,7 +111,7 @@ class Scene2 extends Phaser.Scene {
         this.paniette.setVelocityX(0);
         }
         if(this.timeLeft == 0){
-        this.scene.start('transition_3', {argent: this.argent});
+        this.scene.start('transition_3', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
         }
 
     

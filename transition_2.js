@@ -4,11 +4,13 @@ class transition_2 extends Phaser.Scene {
 	}
 	init(data){
     this.argent = data.argent;
+    this.niveau = data.niveau;
+    this.lvl = data.lvl;
 
   	}
 
 	preload(){
-		this.load.image('parchemin2','assets/parchemin2.png');
+	
 	}
 
 	create(){
@@ -18,7 +20,7 @@ class transition_2 extends Phaser.Scene {
 	    })
 
 	    function changeLevel(){
-	    this.scene.start('micro_jeu_2', {argent: this.argent});
+	    this.scene.start('micro_jeu_2', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
 	    }
 	}
 

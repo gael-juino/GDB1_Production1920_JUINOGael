@@ -4,20 +4,21 @@ class Scene1 extends Phaser.Scene {
 	}
 	init(data){
     this.argent = data.argent;
+    this.niveau = data.niveau;
+    this.lvl = data.lvl;
 
   	}
 
 	preload(){
-	this.load.image('perso','assets/perso.png');
-	this.load.image('neko','assets/neko.png')
-	this.load.image('background','assets/background.png');
-	this.load.image('platforms','assets/platforms.png');
-
-	this.load.image('timebar','assets/timebar.png');
+	
 	
 	}
 
 	create(){
+	//dif//
+	this.diff = (100*this.niveau);
+
+	
 
 	this.add.image(400,300,'background');
 
@@ -33,46 +34,47 @@ class Scene1 extends Phaser.Scene {
 
 		//objet//
 			//neko1//
-			this.neko1 = this.physics.add.group();
-			this.neko1.create(10, -190, 'neko');
-			this.neko1.create(90, -190, 'neko');
-			this.neko1.create(170, -190, 'neko');
-			this.neko1.create(230, -190, 'neko');
-			this.neko1.create(310, -190, 'neko');
-			this.neko1.create(390, -190, 'neko');
-			this.neko1.create(470, -190, 'neko');
-			this.neko1.create(750, -190, 'neko');
+			this.neko1 = this.physics.add.group({allowGravity: true});
+
+			this.neko1.create(10, -190, 'neko').setGravityY(this.diff);
+			this.neko1.create(90, -190, 'neko').setGravityY(this.diff);
+			this.neko1.create(170, -190, 'neko').setGravityY(this.diff);
+			this.neko1.create(230, -190, 'neko').setGravityY(this.diff);
+			this.neko1.create(310, -190, 'neko').setGravityY(this.diff);
+			this.neko1.create(390, -190, 'neko').setGravityY(this.diff);
+			this.neko1.create(470, -190, 'neko').setGravityY(this.diff);
+			this.neko1.create(750, -190, 'neko').setGravityY(this.diff);
 
 			//neko2//
 			this.neko2 = this.physics.add.group();
-			this.neko2.create(240, -190, 'neko');
-			this.neko2.create(320, -190, 'neko');
-			this.neko2.create(400, -190, 'neko');
-			this.neko2.create(480, -190, 'neko');
-			this.neko2.create(560, -190, 'neko');
-			this.neko2.create(640, -190, 'neko');
-			this.neko2.create(720, -190, 'neko');
-			this.neko2.create(800, -190, 'neko');
+			this.neko2.create(240, -190, 'neko').setGravityY(this.diff);
+			this.neko2.create(320, -190, 'neko').setGravityY(this.diff);
+			this.neko2.create(400, -190, 'neko').setGravityY(this.diff);
+			this.neko2.create(480, -190, 'neko').setGravityY(this.diff);
+			this.neko2.create(560, -190, 'neko').setGravityY(this.diff);
+			this.neko2.create(640, -190, 'neko').setGravityY(this.diff);
+			this.neko2.create(720, -190, 'neko').setGravityY(this.diff);
+			this.neko2.create(800, -190, 'neko').setGravityY(this.diff);
 			//neko3//
 			this.neko3 = this.physics.add.group();
-			this.neko3.create(10, -190, 'neko');
-			this.neko3.create(90, -190, 'neko');
-			this.neko3.create(170, -190, 'neko');
-			this.neko3.create(250, -190, 'neko');
-			this.neko3.create(530, -190, 'neko');
-			this.neko3.create(610, -190, 'neko');
-			this.neko3.create(690, -190, 'neko');
-			this.neko3.create(760, -190, 'neko');
+			this.neko3.create(10, -190, 'neko').setGravityY(this.diff);
+			this.neko3.create(90, -190, 'neko').setGravityY(this.diff);
+			this.neko3.create(170, -190, 'neko').setGravityY(this.diff);
+			this.neko3.create(250, -190, 'neko').setGravityY(this.diff);
+			this.neko3.create(530, -190, 'neko').setGravityY(this.diff);
+			this.neko3.create(610, -190, 'neko').setGravityY(this.diff);
+			this.neko3.create(690, -190, 'neko').setGravityY(this.diff);
+			this.neko3.create(760, -190, 'neko').setGravityY(this.diff);
 			//neko4//
 			this.neko4 = this.physics.add.group();
-			this.neko4.create(780, -190, 'neko');
-			this.neko4.create(700, -190, 'neko');
-			this.neko4.create(620, -190, 'neko');
-			this.neko4.create(540, -190, 'neko');
-			this.neko4.create(460, -190, 'neko');
-			this.neko4.create(380, -190, 'neko');
-			this.neko4.create(300, -190, 'neko');
-			this.neko4.create(0, -190, 'neko');
+			this.neko4.create(780, -190, 'neko').setGravityY(this.diff);
+			this.neko4.create(700, -190, 'neko').setGravityY(this.diff);
+			this.neko4.create(620, -190, 'neko').setGravityY(this.diff);
+			this.neko4.create(540, -190, 'neko').setGravityY(this.diff);
+			this.neko4.create(460, -190, 'neko').setGravityY(this.diff);
+			this.neko4.create(380, -190, 'neko').setGravityY(this.diff);
+			this.neko4.create(300, -190, 'neko').setGravityY(this.diff);
+			this.neko4.create(0, -190, 'neko').setGravityY(this.diff);
 
 
 			this.physics.add.collider(this.neko1,this.platforms1);
@@ -110,7 +112,7 @@ class Scene1 extends Phaser.Scene {
 
 	 // Perso//
 
-			this.player = this.physics.add.image(200,450 ,'perso');
+			this.player = this.physics.add.sprite(200,450 ,'perso');
 			this.player.direction = 'right';
 			this.player.setBounce(0.02);
 			this.player.setCollideWorldBounds(true);
@@ -159,19 +161,19 @@ class Scene1 extends Phaser.Scene {
 			});
 		//hitNeko//
 		function hitNeko1(player,neko1){
-		this.scene.start('gameOver', {argent: this.argent});
+		this.scene.start('gameOver', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
 
 		}
 		function hitNeko2(player,neko2){
-		this.scene.start('gameOver', {argent: this.argent});
+		this.scene.start('gameOver', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
 
 		}
 		function hitNeko3(player,neko3){
-		this.scene.start('gameOver', {argent: this.argent});
+		this.scene.start('gameOver', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
 
 		}
 		function hitNeko4(player,neko4){
-		this.scene.start('gameOver', {argent: this.argent});
+		this.scene.start('gameOver', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
 
 		}
 	}
@@ -181,25 +183,22 @@ class Scene1 extends Phaser.Scene {
 	// Deplacement du perso// 
 
 		if (this.cursors.left.isDown){
+			this.player.setFlipX(true);
            this.player.setVelocityX(-600);
-           this.player.setFlipX(true);
+           this.player.anims.play('left', true);
+           this.player.direction = 'left';
 
-           //this.player.anims.play('left', true);
-
-           //this.player.direction = 'left';
         }
         else if (this.cursors.right.isDown){
+        	this.player.setFlipX(false);
             this.player.setVelocityX(600);
-            this.player.setFlipX(true);
+            this.player.anims.play('right', true);
+            this.player.direction = 'right';
 
-            //this.player.anims.play('right', true);
-            //this.player.direction = 'right';
         }
         else{
             this.player.setVelocityX(0);
-            this.player.setFlipX(true);
-
-            //this.player.anims.play('turn');
+            this.player.anims.play('turn');
         }
         //timer//
         if(this.timeLeft == 625){
@@ -215,7 +214,7 @@ class Scene1 extends Phaser.Scene {
         this. platforms4.destroy(true);
         }
         if(this.timeLeft == 0){
-        this.scene.start('transition_2', {argent: this.argent});
+        this.scene.start('transition_2', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
         }
         
 	}

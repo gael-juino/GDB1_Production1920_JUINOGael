@@ -5,24 +5,24 @@ class Scene3 extends Phaser.Scene {
 
 	init(data){
     this.argent = data.argent;
+    this.niveau = data.niveau;
+    this.lvl = data.lvl;
 
   	}
 
 	preload(){
-	this.load.image('fond2','assets/sanctuaire.png');
-	this.load.image('timebar','assets/timebar.png');
-	this.load.image('caisse','assets/caisse.png');
-	this.load.image('caisse2','assets/caisse2.png');
-	this.load.image('sol','assets/sol.png');
-	this.load.image('samurai','assets/samurai.png');
+	
 
 
 	}
 	create(){
+	//diff//
+	this.diff = (2000*this.niveau);
 
 	//saut//
 	this.saut = 2;
 	this.nsaut = 1;
+
 	//fond//
 	this.add.image(360,265, 'fond2');
 
@@ -35,7 +35,7 @@ class Scene3 extends Phaser.Scene {
 	this.sol.setVisible(false);
 
 	//anims perso//
-	this.samurai = this.physics.add.image(200,420 ,'samurai');
+	this.samurai = this.physics.add.sprite(200,420 ,'samurai');
 	this.samurai.direction = 'right';
 	this.samurai.setBounce(0.02);
 	this.samurai.body.setGravityY(200);
@@ -43,17 +43,52 @@ class Scene3 extends Phaser.Scene {
 	this.physics.add.collider(this.samurai, this.sol);
 	this.samurai.setVisible(true);
 
+
+			this.anims.create({
+			    key: 'left',
+			    frames: this.anims.generateFrameNumbers('samurai', { start: 0, end: 2 }),
+			    frameRate: 10,
+			    repeat: -1
+			});
+
+			this.anims.create({
+			    key: 'turn',
+			    frames: [ { key: 'samurai', frame: 1 } ],
+			    frameRate: 20
+			});
+
+			this.anims.create({
+			    key: 'right',
+			    frames: this.anims.generateFrameNumbers('samurai', { start: 0, end: 2 }),
+			    frameRate: 10,
+			    repeat: -1
+			});
+
+			this.anims.create({
+			    key: 'up',
+			    frames: this.anims.generateFrameNumbers('samurai', { start: 0, end: 2 }),
+			    frameRate: 10,
+			    repeat: -1
+			});
+
+			this.anims.create({
+			    key: 'down',
+			    frames: this.anims.generateFrameNumbers('samurai', { start: 0, end: 2 }),
+			    frameRate: 10,
+			    repeat: -1
+			});
+
+			
+
 	//caisse//
 	this.caisse = this.physics.add.image(1050,400,'caisse');
 	this.caisse.direction = 'right';
-	this.caisse.setCollideWorldBounds(true);
 	this.physics.add.collider(this.caisse, this.sol);
 	this.physics.add.collider(this.samurai, this.caisse, hitcaisse, null, this);
 
 	//caisse2//
 	this.caisse2 = this.physics.add.image(1500,400,'caisse2');
 	this.caisse2.direction = 'right';
-	this.caisse2.setCollideWorldBounds(true);
 	this.physics.add.collider(this.caisse2, this.sol);
 	this.physics.add.collider(this.samurai, this.caisse2, hitcaisse2, null, this);
 
@@ -85,11 +120,11 @@ class Scene3 extends Phaser.Scene {
 
         //function//
         function hitcaisse(samurai, caisse){
-		this.scene.start('gameOver', {choix: this.argent});
+		this.scene.start('gameOver', {choix: this.argent, niveau: this.niveau, lvl: this.lvl});
 		}
 
 		function hitcaisse2(samurai, caisse2){
-		this.scene.start('gameOver', {choix: this.argent});
+		this.scene.start('gameOver', {choix: this.argent, niveau: this.niveau, lvl: this.lvl});
 		}
 
 	}
@@ -98,7 +133,15 @@ class Scene3 extends Phaser.Scene {
 
 	update(){
 		// Deplacement du perso// 
+		if(this.timeLeft == 0){
+        	this.samurai.play('left', false);
+        }
 
+        else {
+        	this.samurai.play('left', true);
+        }
+		       
+        
 		if(this.cursors.up.isDown && this.samurai.body.touching.down){
 		this.saut = 2;
 		}
@@ -131,7 +174,7 @@ class Scene3 extends Phaser.Scene {
 				targets: this.caisse,
 				x:10,
 				ease: 'Linear',
-				duration: 5000,
+				duration: 5000-this.diff,
 				repeat: -1
 			});
 		}
@@ -142,16 +185,26 @@ class Scene3 extends Phaser.Scene {
 				targets: this.caisse2,
 				x:10,
 				ease: 'Linear',
-				duration: 5500,
+				duration: 5200-this.diff,
 				repeat: -1
 			});
 		}
 
 		if(this.timeLeft == 0){
-        this.scene.start('map', {argent: this.argent});
-        this.argent ++;
+        	
+
+        	if (this.lvl == 0) {
+			this.argent+= 100;
+			this.lvl++;
+			this.scene.start('map', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
+			console.log(this.argent);
+        	}
+
+        	else if (this.lvl == 1) {
+			this.argent+=200
+			this.scene.start('map', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
+			console.log(this.argent);
+        	}
         }
-
-
 	}
 }
