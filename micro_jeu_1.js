@@ -2,6 +2,10 @@ class Scene1 extends Phaser.Scene {
     constructor() {
         super("micro_jeu_1");
 	}
+	init(data){
+    this.argent = data.argent;
+
+  	}
 
 	preload(){
 	this.load.image('perso','assets/perso.png');
@@ -19,6 +23,7 @@ class Scene1 extends Phaser.Scene {
 
 	this.platforms = this.physics.add.staticGroup();
 	this.platforms.create(400, 520, 'platforms');
+	this.platforms.setVisible(false);
 
 	//platforms//
 		this.platforms1 = this.physics.add.staticImage(400, -100, 'platforms');
@@ -37,6 +42,7 @@ class Scene1 extends Phaser.Scene {
 			this.neko1.create(390, -190, 'neko');
 			this.neko1.create(470, -190, 'neko');
 			this.neko1.create(750, -190, 'neko');
+
 			//neko2//
 			this.neko2 = this.physics.add.group();
 			this.neko2.create(240, -190, 'neko');
@@ -104,7 +110,7 @@ class Scene1 extends Phaser.Scene {
 
 	 // Perso//
 
-			this.player = this.physics.add.image(200,420 ,'perso');
+			this.player = this.physics.add.image(200,450 ,'perso');
 			this.player.direction = 'right';
 			this.player.setBounce(0.02);
 			this.player.setCollideWorldBounds(true);
@@ -153,19 +159,19 @@ class Scene1 extends Phaser.Scene {
 			});
 		//hitNeko//
 		function hitNeko1(player,neko1){
-		this.scene.start('micro_jeu_2');
+		this.scene.start('transition_2');
 
 		}
 		function hitNeko2(player,neko2){
-		this.scene.start('micro_jeu_2');
+		this.scene.start('transition_2');
 
 		}
 		function hitNeko3(player,neko3){
-		this.scene.start('micro_jeu_2');
+		this.scene.start('transition_2');
 
 		}
 		function hitNeko4(player,neko4){
-		this.scene.start('micro_jeu_2');
+		this.scene.start('transition_2');
 
 		}
 	}
@@ -175,7 +181,7 @@ class Scene1 extends Phaser.Scene {
 	// Deplacement du perso// 
 
 		if (this.cursors.left.isDown){
-           this.player.setVelocityX(-800);
+           this.player.setVelocityX(-600);
            this.player.setFlipX(true);
 
            //this.player.anims.play('left', true);
@@ -183,7 +189,7 @@ class Scene1 extends Phaser.Scene {
            //this.player.direction = 'left';
         }
         else if (this.cursors.right.isDown){
-            this.player.setVelocityX(800);
+            this.player.setVelocityX(600);
             this.player.setFlipX(true);
 
             //this.player.anims.play('right', true);
@@ -196,10 +202,10 @@ class Scene1 extends Phaser.Scene {
             //this.player.anims.play('turn');
         }
         //timer//
-        if(this.timeLeft == 550){
+        if(this.timeLeft == 625){
         this.platforms1.destroy(true);
         }
-        if(this.timeLeft == 450){
+        if(this.timeLeft == 500){
         this.platforms2.destroy(true);
         }
         if(this.timeLeft == 350){
@@ -209,7 +215,7 @@ class Scene1 extends Phaser.Scene {
         this. platforms4.destroy(true);
         }
         if(this.timeLeft == 0){
-        this.scene.start('micro_jeu_2');
+        this.scene.start('transition_2');
         }
         
 	}

@@ -2,13 +2,17 @@ class Scene3 extends Phaser.Scene {
     constructor() {
         super("micro_jeu_3");
 	}
+	init(data){
+    this.argent = data.argent;
+
+  	}
 
 	preload(){
 	this.load.image('fond2','assets/sanctuaire.png');
 	this.load.image('timebar','assets/timebar.png');
 	this.load.image('caisse','assets/caisse.png');
 	this.load.image('caisse2','assets/caisse2.png');
-	this.load.image('platforms','assets/platforms.png');
+	this.load.image('sol','assets/sol.png');
 	this.load.image('samurai','assets/samurai.png');
 
 
@@ -24,33 +28,33 @@ class Scene3 extends Phaser.Scene {
 	//cursors//
 	this.cursors = this.input.keyboard.createCursorKeys();
 
-	//platforms//
-	this.platforms = this.physics.add.staticGroup();
-	this.platforms.create(400, 528, 'platforms');
-	this.platforms.setVisible(false);
+	//sol//
+	this.sol = this.physics.add.staticGroup();
+	this.sol.create(400, 528, 'sol');
+	this.sol.setVisible(false);
 
 	//anims perso//
 	this.samurai = this.physics.add.image(200,420 ,'samurai');
 	this.samurai.direction = 'right';
 	this.samurai.setBounce(0.02);
-	this.samurai.body.setGravityY(10);
+	this.samurai.body.setGravityY(200);
 	this.samurai.setCollideWorldBounds(true);
-	this.physics.add.collider(this.samurai, this.platforms);
+	this.physics.add.collider(this.samurai, this.sol);
 	this.samurai.setVisible(true);
 
 	//caisse//
-	this.caisse = this.physics.add.image(800,400,'caisse');
+	this.caisse = this.physics.add.image(1050,400,'caisse');
 	this.caisse.direction = 'right';
 	this.caisse.setCollideWorldBounds(true);
-	this.physics.add.collider(this.caisse, this.platforms);
-	this.physics.add.overlap(this.samurai, this.caisse);
+	this.physics.add.collider(this.caisse, this.sol);
+	this.physics.add.collider(this.samurai, this.caisse, hitcaisse, null, this);
 
 	//caisse2//
-	this.caisse2 = this.physics.add.image(800,400,'caisse2');
+	this.caisse2 = this.physics.add.image(1500,400,'caisse2');
 	this.caisse2.direction = 'right';
 	this.caisse2.setCollideWorldBounds(true);
-	this.physics.add.collider(this.caisse2, this.platforms);
-	this.physics.add.overlap(this.samurai, this.caisse);
+	this.physics.add.collider(this.caisse2, this.sol);
+	this.physics.add.collider(this.samurai, this.caisse2, hitcaisse2, null, this);
 
 
 	//timebar//
@@ -77,8 +81,19 @@ class Scene3 extends Phaser.Scene {
             this.gameTimer.paused = false;
 
             this.cursors = this.input.keyboard.createCursorKeys();
+
+        //function//
+        function hitcaisse(samurai, caisse){
+		this.scene.start('ecran_titre');
+		}
+
+		function hitcaisse2(samurai, caisse2){
+		this.scene.start('ecran_titre');
+		}
+
 	}
 
+	
 
 	update(){
 		// Deplacement du perso// 
@@ -92,7 +107,7 @@ class Scene3 extends Phaser.Scene {
 		this.nSaut=0;
 
 		if (this.saut == 1) {
-		this.samurai.setVelocityY(-250);
+		this.samurai.setVelocityY(-280);
 
 		if (this.samurai.body.velocity.y<0) {
 
@@ -100,7 +115,7 @@ class Scene3 extends Phaser.Scene {
 		}
 
 		if (this.saut == 0) {
-		this.samurai.setVelocityY(-250);
+		this.samurai.setVelocityY(-280);
 		if (this.samurai.body.velocity.y<0) {
 		}}
 		}
@@ -110,30 +125,32 @@ class Scene3 extends Phaser.Scene {
 		}
 
         //caisse//
-        if (this.caisse.x >= 800) {
+        if (this.caisse.x >= 1050) {
 			this.tweens.add({
 				targets: this.caisse,
 				x:10,
 				ease: 'Linear',
-				duration: 4000,
+				duration: 5000,
 				repeat: -1
 			});
 		}
 
 		//caisse2//
-        if (this.caisse2.x >= 1000) {
+        if (this.caisse2.x >= 1500) {
 			this.tweens.add({
 				targets: this.caisse2,
 				x:10,
 				ease: 'Linear',
-				duration: 4000,
+				duration: 5500,
 				repeat: -1
 			});
 		}
 
+		if(this.timeLeft == 0){
+        this.scene.start('map');
+        this.argent+= 1;
+        }
 
-
-		
 
 	}
 }

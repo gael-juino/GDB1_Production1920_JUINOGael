@@ -2,6 +2,10 @@ class Scene2 extends Phaser.Scene {
     constructor() {
         super("micro_jeu_2");
 	}
+	init(data){
+    this.argent = data.argent;
+
+  	}
 
 	preload(){
 	this.load.image('fond','assets/background2.png');
@@ -19,21 +23,22 @@ class Scene2 extends Phaser.Scene {
 
 	//sol//
 	this.platforms = this.physics.add.staticGroup();
-	this.platforms.create(400, 500, 'platforms');
+	this.platforms.create(400, 490, 'platforms');
+	this.platforms.setVisible(false);
 
 	//cursors//
 	this.cursors = this.input.keyboard.createCursorKeys();
 
-	//anims perso//
-	this.paniette = this.physics.add.image(200,420 ,'panier');
+	//perso//
+	this.paniette = this.physics.add.image(200,460 ,'panier');
 	this.paniette.direction = 'right';
 	this.paniette.setBounce(0.02);
 	this.paniette.setCollideWorldBounds(true);
 	this.paniette.setVisible(true);
 
 	//score//
-	this.score = 10;
-	this.scoreText = this.add.text(16,150 , 'score: 10', { fontSize: '32px', fill: '#FFF' });
+	this.score = 8;
+	this.scoreText = this.add.text(16,130 , 'bol restant: 8', { fontSize: '32px', fill: '#FFF' });
 
 	//timerbar//
 	let gameOptions = { initialTime: 650 }
@@ -83,12 +88,11 @@ class Scene2 extends Phaser.Scene {
 	bol.destroy(true);
 	this.score -= 1;
     this.scoreText.setText('Score: ' + this.score);
-    console.log("bchvh");
     }
 
     function solBol(platforms, bol) {
 	bol.destroy(true);
-	this.scene.start('micro_jeu_3');
+	this.scene.start('transition_3');
     }
     
 
@@ -107,7 +111,7 @@ class Scene2 extends Phaser.Scene {
         this.paniette.setVelocityX(0);
         }
         if(this.timeLeft == 0){
-        this.scene.start('micro_jeu_3');
+        this.scene.start('transition_3');
         }
 
     
