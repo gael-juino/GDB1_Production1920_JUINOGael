@@ -12,6 +12,7 @@ class ecran_titre extends Phaser.Scene {
 	}
 
 	create(){
+		this.argent = 0;
 		this.add.image(400, 250, 'ecran_titre');
 
 
@@ -21,7 +22,7 @@ class ecran_titre extends Phaser.Scene {
 	    })
 
 	    function changeLevel(){
-	    this.scene.start('map');
+	    this.scene.start('map', {argent: this.argent});
 	    }
 	}
 

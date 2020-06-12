@@ -1,6 +1,6 @@
-class transition_2 extends Phaser.Scene {
+class gameOver extends Phaser.Scene {
     constructor() {
-        super("transition_2");
+        super("gameOver");
 	}
 	init(data){
     this.argent = data.argent;
@@ -8,17 +8,17 @@ class transition_2 extends Phaser.Scene {
   	}
 
 	preload(){
-		this.load.image('parchemin2','assets/parchemin2.png');
+		this.load.image('gameOver','assets/gameOver.jpg');
 	}
 
 	create(){
-		this.bouton1 = this.add.image(400, 250, 'parchemin2').setInteractive();
+		this.bouton1 = this.add.image(400, 250, 'gameOver').setInteractive();
 		this.bouton1.on('pointerdown',() => {
 	    this.timedEvent = this.time.delayedCall(0, changeLevel, [], this);
 	    })
 
 	    function changeLevel(){
-	    this.scene.start('micro_jeu_2', {argent: this.argent});
+	    this.scene.start('ecran_titre', {argent: this.argent});
 	    }
 	}
 

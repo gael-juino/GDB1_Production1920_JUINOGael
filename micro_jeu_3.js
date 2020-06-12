@@ -1,7 +1,8 @@
 class Scene3 extends Phaser.Scene {
     constructor() {
-        super("micro_jeu_3");
+    	super("micro_jeu_3");
 	}
+
 	init(data){
     this.argent = data.argent;
 
@@ -84,11 +85,11 @@ class Scene3 extends Phaser.Scene {
 
         //function//
         function hitcaisse(samurai, caisse){
-		this.scene.start('ecran_titre');
+		this.scene.start('gameOver', {choix: this.argent});
 		}
 
 		function hitcaisse2(samurai, caisse2){
-		this.scene.start('ecran_titre');
+		this.scene.start('gameOver', {choix: this.argent});
 		}
 
 	}
@@ -147,8 +148,8 @@ class Scene3 extends Phaser.Scene {
 		}
 
 		if(this.timeLeft == 0){
-        this.scene.start('map');
-        this.argent+= 1;
+        this.scene.start('map', {argent: this.argent});
+        this.argent ++;
         }
 
 

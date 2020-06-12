@@ -11,7 +11,7 @@ var config = {
         }
     },
 
-    scene: [ecran_titre, map, transition_1, Scene1, transition_2, Scene2, transition_3, Scene3]
+    scene: [ecran_titre, map, transition_1, Scene1, transition_2, Scene2, transition_3, Scene3, gameOver]
 
 };
 

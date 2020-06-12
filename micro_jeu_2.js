@@ -38,7 +38,7 @@ class Scene2 extends Phaser.Scene {
 
 	//score//
 	this.score = 8;
-	this.scoreText = this.add.text(16,130 , 'bol restant: 8', { fontSize: '32px', fill: '#FFF' });
+	this.scoreText = this.add.text(50,110 , 'bol restant: 8', { fontSize: '32px', fill: '#FFF' });
 
 	//timerbar//
 	let gameOptions = { initialTime: 650 }
@@ -87,12 +87,12 @@ class Scene2 extends Phaser.Scene {
 	function collectBol(paniette, bol) {
 	bol.destroy(true);
 	this.score -= 1;
-    this.scoreText.setText('Score: ' + this.score);
+    this.scoreText.setText('Bol restant: ' + this.score);
     }
 
     function solBol(platforms, bol) {
 	bol.destroy(true);
-	this.scene.start('transition_3');
+	this.scene.start('gameOver', {argent: this.argent});
     }
     
 
@@ -111,7 +111,7 @@ class Scene2 extends Phaser.Scene {
         this.paniette.setVelocityX(0);
         }
         if(this.timeLeft == 0){
-        this.scene.start('transition_3');
+        this.scene.start('transition_3', {argent: this.argent});
         }
 
     

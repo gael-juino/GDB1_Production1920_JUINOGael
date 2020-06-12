@@ -18,7 +18,7 @@ class transition_3 extends Phaser.Scene {
 	    })
 
 	    function changeLevel(){
-	    this.scene.start('micro_jeu_3');
+	    this.scene.start('micro_jeu_3', {argent: this.argent});
 	    }
 	}
 

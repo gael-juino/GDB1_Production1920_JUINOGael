@@ -159,19 +159,19 @@ class Scene1 extends Phaser.Scene {
 			});
 		//hitNeko//
 		function hitNeko1(player,neko1){
-		this.scene.start('transition_2');
+		this.scene.start('gameOver', {argent: this.argent});
 
 		}
 		function hitNeko2(player,neko2){
-		this.scene.start('transition_2');
+		this.scene.start('gameOver', {argent: this.argent});
 
 		}
 		function hitNeko3(player,neko3){
-		this.scene.start('transition_2');
+		this.scene.start('gameOver', {argent: this.argent});
 
 		}
 		function hitNeko4(player,neko4){
-		this.scene.start('transition_2');
+		this.scene.start('gameOver', {argent: this.argent});
 
 		}
 	}
@@ -215,7 +215,7 @@ class Scene1 extends Phaser.Scene {
         this. platforms4.destroy(true);
         }
         if(this.timeLeft == 0){
-        this.scene.start('transition_2');
+        this.scene.start('transition_2', {argent: this.argent});
         }
         
 	}
