@@ -14,7 +14,6 @@ class map extends Phaser.Scene {
 	}
 
 	create(){
-		this.lvl=0;
 		this.add.image(400, 200, 'map');
 
 		this.bouton1 = this.add.image(410, 140, 'niveau1').setInteractive();
@@ -38,7 +37,7 @@ class map extends Phaser.Scene {
 	    }
 
 	    function changeLevel(){
-	    this.scene.start('transition_3', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
+	    this.scene.start('transition_1', {argent: this.argent, niveau: this.niveau, lvl: this.lvl});
 	    }
 
 	    function changeLevel2(){

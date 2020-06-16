@@ -51,6 +51,7 @@ class load extends Phaser.Scene {
 	create(){
 		this.argent=0;
 		this.niveau=0;
+		this.lvl= 0;
 	}
 
 	update(){

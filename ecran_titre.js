@@ -13,7 +13,6 @@ class ecran_titre extends Phaser.Scene {
 	}
 
 	create(){
-		this.lvl= 0;
 		this.add.image(400, 250, 'ecran_titre');
 
 
